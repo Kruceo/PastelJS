@@ -1,15 +1,20 @@
+export function initAllWoodPicker()
+{
+    document.querySelectorAll('parallax').forEach((each)=>
+    {
+        initWoodPicker(each)
+    })
+}
 
-export function initWoodPicker() {
-    let target = document.querySelector('parallax');
+
+export function initWoodPicker(element) {
+    let target = element
     let scrollTarget = window;
     let isRolling = 'stopped'
     let history = []
    
     let baseBottom = target.style.marginBottom ?? getComputedStyle(target).marginBottom ?? 0
-    let debug = debugCreate('blue')
-    let debu = debugCreate()
     
-   
     scrollTarget.addEventListener('scroll', (e) => {
        
     
@@ -17,35 +22,23 @@ export function initWoodPicker() {
         let limit = (target.offsetTop + target.offsetHeight)+ marginToAdd
         let coef = target.offsetHeight - marginToAdd;
         let screenHeight = window.visualViewport.height
-        let scrollB = scrollTarget.scrollY + scrollTarget.visualViewport.height;
+        let scrollB = scrollTarget.scrollY + screenHeight
         let isInScreen = false
         //HTMLDivElement.prototype.style.transition
         isInScreen = false
         if(limit > scrollTarget.scrollY && target.offsetTop < scrollB)
         {
-            target.style.marginBottom = marginToAdd * 0.75 + 'px'
-            target.style.marginTop = -marginToAdd * 0.75 + 'px'
+            target.style.marginBottom = marginToAdd * .75 + 'px'
+            target.style.marginTop = -marginToAdd * .75 + 'px'
             isInScreen = true
-            console.log(' \nmar:'+marginToAdd.toFixed(0).padEnd(6,' ')
-            +' |\n top :',target.offsetTop 
-            +' |\n scrT :',scrollTarget.scrollY
-            +' |\n scrB:',scrollB
-            +' |\n coe :',coef.toFixed(0)
-            +' |\n lim :',limit
-            +' |\n ini :',target.offsetTop 
-            +' |\n show :',isInScreen)
+           
            
         }
-       
-       
-        debu.style.top = limit+ 'px';
-        debug.style.top = target.offsetTop + marginToAdd+ 'px';
-        target.style.position = 'relative'
-        target.style.display = 'block'
-        target.style.transition = "margin .3s cubic-bezier(0.165, 0.84, 0.44, 1)"
         
     })
-    document.body.appendChild(test)
+    target.style.position = 'relative'
+    target.style.display = 'block'
+    target.style.transition = "margin .25s cubic-bezier(0.165, 0.84, 0.44, 1)"
     scrollTarget.dispatchEvent(new Event('scroll'))
 }
 
