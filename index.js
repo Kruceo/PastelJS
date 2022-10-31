@@ -1,18 +1,17 @@
-export function initAllWoodPicker()
+export function initAllParallax()
 {
     document.querySelectorAll('parallax').forEach((each)=>
     {
-        initWoodPicker(each)
+        initParallax(each)
     })
 }
 
-
-export function initWoodPicker(element) {
+export function initParallax(element) {
     let target = element
     let scrollTarget = window;
     let isRolling = 'stopped'
     let history = []
-   
+    let mult = target.getAttribute('mult')??0.75
     let baseBottom = target.style.marginBottom ?? getComputedStyle(target).marginBottom ?? 0
     
     scrollTarget.addEventListener('scroll', (e) => {
@@ -28,8 +27,8 @@ export function initWoodPicker(element) {
         isInScreen = false
         if(limit > scrollTarget.scrollY && target.offsetTop < scrollB)
         {
-            target.style.marginBottom = marginToAdd * .75 + 'px'
-            target.style.marginTop = -marginToAdd * .75 + 'px'
+            target.style.marginBottom = marginToAdd * mult + 'px'
+            target.style.marginTop = -marginToAdd * mult + 'px'
             isInScreen = true
            
            

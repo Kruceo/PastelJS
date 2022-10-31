@@ -13,5 +13,5 @@ npm install Kruceo/PastelJS
 with the CDN way
 
 ```html
-<script src="https://pastel.kruceo.com/dist/bundle.cdn.js">
+<script src="https://pastel.kruceo.com/dist/bundle.cdn.js"> <!- not working->
 ```
